@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Collects the project dependencies and operating system information, and displays the required system libraries to
 install all your dependencies.}
   #spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/TamerB/WhatDeps"
   spec.license       = "MIT"
 
 
