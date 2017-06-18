@@ -13,10 +13,10 @@ namespace :WhatDeps do
 			puts "I don't recognise the following gems.".
 			puts unrecognized.join(', ')
 
-			unrecognized.each do |gem|
-				print 'Do you know the system libraries needed for #{gem} ? \n
+			unrecognized.each do |pkg|
+				print 'Do you know the system libraries needed for #{pkg} ? \n
 				You can add multiple dependencies seperated by (,) e.g. dep1,dep2,....\n
-				To pass to the next gem type next'
+				To pass to the next gem type n'
 				puts 'To exit type "exit"'
 				
 				STDOUT.flush
@@ -26,6 +26,7 @@ namespace :WhatDeps do
 				next if deps.empty? || deps.length == 1 && deps[0].downcase == 'next'
 
 				# Send a post request to add gem and its system libraries
+				WhatDepsService.create(pkg, deps, os)
 			end
 		end
 
@@ -51,7 +52,7 @@ namespace :WhatDeps do
 				abort "Sorry, I couldn't install the following dependencies:\n" +
 				status[:fail].join(', ')
 			end
-
 		end
+		abort 'Goodbye :)'
 	end
 end

@@ -5,8 +5,8 @@ class WhatDepsService
 
 	basic_url 'http://localhost:3000'
 
-	def initialize(gem, os)
-		@options = {query: {packages: gems, os: os, pack_type: 'gem'}}
+	def initialize(pkg, os)
+		@options = {query: {packages: pkg, os: os, pack_type: 'gem'}}
 		@packages = load_deps(@options)
 	end
 
@@ -16,6 +16,11 @@ class WhatDepsService
 
 	def get_unrecognized
 		@packages['unrecognized']
+	end
+
+	def self.create(pkg, deps, os)
+		options = {body: {package: pkg, os: os, pack_type: 'gem', deps: deps}}
+		self.class.post('/add', options)
 	end
 
 	private
