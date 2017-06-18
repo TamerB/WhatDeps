@@ -3,7 +3,7 @@ require 'httparty'
 class WhatDepsService
 	include HTTParty
 
-	basic_url 'http://localhost:3000'
+	base_uri 'http://localhost:3000'
 
 	def initialize(pkg, os)
 		@options = {query: {packages: pkg, os: os, pack_type: 'gem'}}
@@ -26,7 +26,8 @@ class WhatDepsService
 	private
 
 	def load_deps(options)
-		deps = self.class.get("/package", options).to_json
+		deps = self.class.get("/package", options)
+		deps.to_json
 	end
 
 	def dep_exists?(dep)
