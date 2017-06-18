@@ -28,4 +28,5 @@ install all your dependencies.}
   spec.add_development_dependency "rspec", "~> 3.0"
 
   spec.add_dependency 'httparty', '~> 0.15.5'
+  spec.add_dependency "os", "~> 1.0"
 end
