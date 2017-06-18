@@ -7,12 +7,16 @@ class WhatDepsService
 	base_uri 'http://localhost:3000'
 
 	def initialize(pkg, os)
-		@options = {query: {packages: pkg, os: os, pack_type: 'gem'}}
-		@packages = load_deps(@options)
+			@options = {query: {packages: pkg, os: os, pack_type: 'gem'}}
+			@packages = load_deps(@options)
 	end
 
 	def get_libs
-		@packages['dependencies'].reject { |dep| dep_exists?(dep)}
+		begin
+			@packages['dependencies'].reject { |dep| dep_exists?(dep)}
+		rescue
+			[]
+		end
 	end
 
 	def get_unrecognized
@@ -27,8 +31,12 @@ class WhatDepsService
 	private
 
 	def load_deps(options)
-		deps = self.class.get("/package", options)
-		JSON.parse(deps.to_json)
+		begin
+			deps = self.class.get("/package", options)
+			JSON.parse(deps.to_json)
+		rescue
+			abort "Sorry, there's a problem connecting to our server"
+		end
 	end
 
 	def dep_exists?(dep)
