@@ -21,7 +21,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To start searching for your dependencies system requirements, execute:
+
+    $ rake WhatDeps:show
 
 ## Development
 
