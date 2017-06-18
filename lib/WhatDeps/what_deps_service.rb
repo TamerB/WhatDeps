@@ -19,7 +19,7 @@ class WhatDepsService
 		@packages['unrecognized']
 	end
 
-	def self.create(pkg, deps, os)
+	def create(pkg, deps, os)
 		options = {body: {package: pkg, os: os, pack_type: 'gem', deps: deps}}
 		self.class.post('/add', options)
 	end
