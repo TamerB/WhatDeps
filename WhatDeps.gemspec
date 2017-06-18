@@ -26,4 +26,6 @@ install all your dependencies.}
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
+
+  spec.add_dependency 'httparty', '~> 0.15.5'
 end
