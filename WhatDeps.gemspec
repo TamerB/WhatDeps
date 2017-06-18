@@ -29,4 +29,5 @@ install all your dependencies.}
 
   spec.add_dependency 'httparty', '~> 0.14.0'
   spec.add_dependency "os", "~> 1.0"
+  spec.add_dependency 'json'
 end
