@@ -14,19 +14,21 @@ namespace :WhatDeps do
 			puts unrecognized.join(', ')
 
 			unrecognized.each do |pkg|
-				print 'Do you know the system libraries needed for #{pkg} (y/n)?
+				print 'Do you know the system libraries needed for #{pkg}?
+				To add dependencies enter them and press enter
 				You can add multiple dependencies seperated by (,) e.g. dep1,dep2,....
 				To pass to the next gem type n'
-				puts 'To exit type "exit"'
+				puts 'To exit this section type "e"'
 				
 				STDOUT.flush
 				deps = STDIN.gets.chomp.split(',')
 
-				break if deps.length == 1 && deps[0].downcase == 'exit'
+				break if deps.length == 1 && deps[0].downcase == 'exit' || deps[0].downcase == 'e'
 				next if deps.empty? || deps.length == 1 && deps[0].downcase == 'n'
 
 				# Send a post request to add gem and its system libraries
-				result.create(pkg, deps, os) if deps.downcase == 'y'
+				result.create(pkg, deps, os)
+				dependencies = dependencies.concat(deps)
 			end
 		end
 
@@ -34,7 +36,7 @@ namespace :WhatDeps do
 		abort 'All set already. No dependencies to be installed' if dependencies.empty?
 
 		# this line should be concatinated to system libs in the response
-		print "Your project needs the following dpendencies to be installed into your system:
+		print "Your project needs the following dpendencies to be installed into your system:\n
 		#{dependencies.join(', ')}"
 
 		puts 'Would you like me to install them for you? (y/n)'
