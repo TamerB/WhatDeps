@@ -5,8 +5,8 @@ class WhatDepsService
 
 	basic_url 'http://localhost:3000'
 
-	def initialize(gem)
-		@options = {query: {packages: gems, os: WharOs.detect, pack_type: 'gem'}}
+	def initialize(gem, os)
+		@options = {query: {packages: gems, os: os, pack_type: 'gem'}}
 		@packages = load_deps(@options)
 	end
 

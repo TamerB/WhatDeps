@@ -4,7 +4,8 @@ namespace :WhatDeps do
 	desc 'Lists required system libraries'
 	task show: :environment do
 		packages = Bundler.load.specs.map(&:name)
-		result = WhatDeps.new(packages)
+		os = WhatOs.detect
+		result = WhatDeps.new(packages, os)
 		dependencies = result.get_libs
 		unrecognized = result.get_unrecognized
 
@@ -34,5 +35,23 @@ namespace :WhatDeps do
 		# this line should be concatinated to system libs in the response
 		print "Your project needs the following dpendencies to be installed into your system:\n
 		#{dependencies.join(', ')}"
+
+		puts 'Would you like me to install them for you? (y/n)'
+		STDOUT.flush
+		input = STDIN.get.chomp
+
+		if input.downcase == 'y'
+			status = Installer.install(dependencies, os)
+
+			if status[:success].present?
+				abort 'The following dependencies have been installed:\n' + 
+				status[:success].join(', ') + '\n
+				Ship is ready to sail. Good luck :)'
+			else
+				abort "Sorry, I couldn't install the following dependencies:\n" +
+				status[:fail].join(', ')
+			end
+
+		end
 	end
 end
