@@ -3,12 +3,6 @@ class Installer
 		def install(deps, os)
 			raise UnsupportedOS if os == 'unknown'
 
-			setup(deps, os)
-		end
-
-		private
-
-		def setup(deps, os)
 			success = []
 			fails = []
 
@@ -24,7 +18,10 @@ class Installer
 				end
 			end
 			{success: success, fail, fails}
+			setup(deps, os)
 		end
+
+		private
 
 		def linux_install(dep)
 			if system("sudo apt-get -y install #{pkg}").include? "command not found"
