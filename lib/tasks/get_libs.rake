@@ -4,8 +4,8 @@ namespace :WhatDeps do
 	desc 'Lists required system libraries'
 	task show: :environment do
 		packages = Bundler.load.specs.map(&:name)
-		os = WhatOs.detect
-		result = WhatDeps.new(packages, os)
+		os = WhatOS.detect
+		result = WhatDepsService.new(packages, os)
 		dependencies = result.get_libs
 		unrecognized = result.get_unrecognized
 

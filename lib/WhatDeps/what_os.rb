@@ -7,9 +7,8 @@ class WhatOS
 				return 'linux'
 			elsif OS.mac?
 				return 'macos'
-			else
-				return 'unknown'
 			end
+			return 'unknown'
 		end
 	end
 end

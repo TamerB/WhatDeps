@@ -27,7 +27,7 @@ class WhatDepsService
 
 	def load_deps(options)
 		deps = self.class.get("/package", options)
-		deps.to_json
+		JSON.parse(deps.to_json)
 	end
 
 	def dep_exists?(dep)
