@@ -12,7 +12,7 @@ class WhatDepsService
 	end
 
 	def get_libs
-		@packages['dependencies'].reject { |dep| dep_exists?(pkg)}
+		@packages['dependencies'].reject { |dep| dep_exists?(dep)}
 	end
 
 	def get_unrecognized

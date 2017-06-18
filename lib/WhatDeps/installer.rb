@@ -17,16 +17,13 @@ class Installer
 					puts "failure"
 				end
 			end
-			{success: success, fail, fails}
-			setup(deps, os)
+			{success: success, fail: fails}
 		end
 
 		private
 
 		def linux_install(dep)
-			if system("sudo apt-get -y install #{pkg}").include? "command not found"
-				system("sudo yum -y install #{pkg}")
-			end
+			system("sudo apt-get -y install #{dep}")
 		end
 
 		def macos_install(dep)
