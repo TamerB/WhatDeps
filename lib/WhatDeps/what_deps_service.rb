@@ -20,7 +20,7 @@ class WhatDepsService
 	end
 
 	def create(pkg, deps, os)
-		options = {body: {package: pkg, os: os, pack_type: 'gem', deps: deps}}
+		options = {body: {package: pkg, os: os, pack_type: 'gem', dependencies: deps}}
 		self.class.post('/add', options)
 	end
 
