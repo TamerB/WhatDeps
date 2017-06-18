@@ -21,7 +21,7 @@ namespace :WhatDeps do
 				puts "To add dependencies enter them and press enter"
 				puts "You can add multiple dependencies seperated by (,) e.g. dep1,dep2,...."
 				puts "To pass to the next gem type n"
-				puts "To exit this section type "e"\n"
+				puts "To exit this section type 'e'\n"
 				
 				STDOUT.flush
 				deps = STDIN.gets.chomp.split(',')
@@ -40,7 +40,7 @@ namespace :WhatDeps do
 		end
 
 		# this line displays in case of no required libs
-		abort "Ship is ready to sail. No dependencies to be installed\n" if dependencies.empty?
+		abort "No required system libraries found.\nGood Bye :)" if dependencies.empty?
 
 		# this line should be concatinated to system libs in the response
 		print "\nYour project needs the following dpendencies to be installed into your system:\n\n"
@@ -61,6 +61,6 @@ namespace :WhatDeps do
 				puts status[:fail].join(', ')
 			end
 		end
-		abort "\nGoodbye :)""
+		abort "\nGoodbye :)"
 	end
 end
