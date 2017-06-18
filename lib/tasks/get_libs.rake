@@ -1,4 +1,4 @@
-
+require 'bundler'
 
 namespace :WhatDeps do
 	desc 'Lists required system libraries'

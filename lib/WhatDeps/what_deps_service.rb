@@ -1,7 +1,7 @@
 require 'httparty'
 
 class WhatDepsService
-	include httparty
+	include HTTParty
 
 	basic_url 'http://localhost:3000'
 
