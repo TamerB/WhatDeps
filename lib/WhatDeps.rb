@@ -1,5 +1,7 @@
 require "WhatDeps/version"
+require "WhatDeps/what_deps_service"
+require "WhatDeps/what_os"
 
 module WhatDeps
-  # Your code goes here...
+  require "WhatDeps/railtie" if defined? (Rails)
 end
