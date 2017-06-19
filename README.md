@@ -21,6 +21,12 @@ To start searching for your dependencies system requirements, execute:
 
     $ rake WhatDeps:show
 
+Note: You can connect this gem to an other REST API clone from https://github.com/TamerB/GemService . Just add the proper base_uri in /lib/WhatDeps/what_deb_service.rb . For example:
+
+```ruby
+base_uri 'http://localhost:3000'
+```  
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
