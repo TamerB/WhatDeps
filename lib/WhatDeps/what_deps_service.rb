@@ -4,8 +4,8 @@ require 'json'
 class WhatDepsService
 	include HTTParty
 
-	base_uri 'http://localhost:3000'
-	# base_uri 'https://nameless-gorge-98075.herokuapp.com'
+	# base_uri 'http://localhost:3000'
+	base_uri 'https://nameless-gorge-98075.herokuapp.com'
 
 	def initialize(pkg, os)
 			@options = {query: {packages: pkg, os: os, pack_type: 'gem'}}
